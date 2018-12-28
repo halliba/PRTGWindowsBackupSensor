@@ -2,7 +2,7 @@
 *based on [htrengove/PRTGwindowsbackup](https://github.com/htrengove/PRTGwindowsbackup/)* 
 
 ## How to install
-1. Download WindowsBackup.ps1
+1. Download [WindowsBackup.ps1](WindowsBackup.ps1)
 2. Save it to your PRTG custom sensor folder for XML-sensors   
 e.g. C:\Program Files (x86)\PRTG Network Monitor\Custom Sensors\EXEXML
 
