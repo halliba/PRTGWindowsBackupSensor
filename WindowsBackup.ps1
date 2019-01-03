@@ -3,7 +3,7 @@
 
 $ErrorActionPreference = "Stop";
 $hostname = $args[0];
-$domain = $args[1];
+$domain   = $args[1];
 $username = $args[2];
 $password = $args[3];
 
@@ -23,6 +23,14 @@ $backupSummary = Invoke-Command -ComputerName $hostname -Credential $creds -Scri
 
 #calculate hours since last backup
 $lastBackup = (Get-Date) - ($backupSummary.LastSuccessfulBackupTime | Measure-Object -Maximum | Select-Object -ExpandProperty Maximum);
+
+if($backupSummary.DetailedMessage -eq '' -and $backupSummary.LastBackupResultHR -eq 0) {
+    $text = 'Last Backup OK';
+} elseif($backupSummary.DetailedMessage -eq '') {
+    $text = 'Unkown Backup Error';
+} else {
+    $text = $backupSummary.DetailedMessage;
+}
 
 Write-Host "<prtg>
   <result>
@@ -47,4 +55,6 @@ Write-Host "<prtg>
     <value>$($backupSummary.NumberOfVersions)</value>
     <limitMinError>0</limitMinError>
   </result>
+
+  <Text>$($text)</Text>
 </prtg>";
