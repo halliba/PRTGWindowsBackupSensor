@@ -1,5 +1,5 @@
 # PRTG Sensor for Windows Backup
-# see https://github.com/halliba
+# see https://github.com/halliba/PRTGWindowsBackupSensor
 
 $ErrorActionPreference = "Stop";
 $hostname = $args[0];
